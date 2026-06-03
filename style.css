@@ -1,0 +1,286 @@
+:root {
+    --bg-card: #121212;
+    --text-color: #ffffff;
+    /* Color de fondo claro, moderno y suave para la vista (no blanco puro) */
+    --bg-page: #f4f5f8;
+}
+
+body {
+    background-color: var(--bg-page);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Contenedor Maestro: Separa Preview (Izq) y Controles (Der) */
+.main-layout {
+    display: flex;
+    gap: 50px;
+    max-width: 1200px;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* IZQUIERDA: Contenedor de las dos caras de la tarjeta */
+.preview-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    flex: 2;
+    justify-content: center;
+}
+
+/* DERECHA: Panel Lateral de Controles */
+.controls-panel {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.card-wrapper.horizontal-layout {
+    width: 480px; /* Se expande para emparejar el tamaño de la carta horizontal */
+}
+
+.controls-panel h2 {
+    margin: 0 0 5px 0;
+    font-size: 1.6rem;
+    color: #111;
+}
+
+.controls-panel p {
+    margin: 0 0 10px 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Inputs y Botones del Panel */
+.controls-panel input[type="text"] {
+    padding: 12px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.controls-panel input[type="text"]:focus {
+    border-color: #ff0000;
+}
+
+.controls-panel button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #ff0000;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #cc0000;
+}
+
+.toggle-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    gap: 10px;
+}
+
+.btn-secondary {
+    background-color: #e2e8f0;
+    color: #333;
+    flex: 1;
+}
+
+.btn-secondary:hover {
+    background-color: #cbd5e1;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+}
+
+/* Estilo para los botones individuales debajo de las tarjetas */
+.btn-card-download {
+    background-color: #111111;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 100%; /* Se adapta al ancho de la tarjeta activa */
+}
+
+.btn-card-download:hover {
+    background-color: #333333;
+    transform: translateY(-2px);
+}
+
+.btn-card-download:active {
+    transform: translateY(0);
+}
+
+/* --- TARJETAS (ESTILO SE MANTIENE PERO CON REAJUSTES) --- */
+.card {
+    --card-radius: 16px;
+    background: var(--bg-card);
+    color: var(--text-color);
+    border-radius: var(--card-radius);
+    padding: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    /* Sombras un poco más suaves en fondo claro */
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-sizing: border-box;
+}
+
+/* Modo Vertical */
+.card.vertical {
+    width: 300px;
+    height: 450px;
+}
+
+.card.vertical #cardCover {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: calc(var(--card-radius) - 6px);
+}
+
+/* Modo Horizontal */
+.card.horizontal {
+    width: 480px;
+    height: 260px;
+}
+
+.card.horizontal .card-inner {
+    display: flex;
+    gap: 20px;
+    height: 100%;
+}
+
+.card.horizontal #cardCover {
+    width: 200px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: calc(var(--card-radius) - 6px);
+}
+
+.card.horizontal .card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+/* Detalles de las cartas */
+.card-info h2 {
+    font-size: 1.3rem;
+    margin: 12px 0 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-info h3 {
+    font-size: 0.95rem;
+    color: #b3b3b3;
+    margin: 0 0 5px 0;
+}
+
+.player-progress {
+    background: #333;
+    height: 5px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    background: #ff0000;
+    width: 35%;
+    height: 100%;
+    border-radius: 3px;
+}
+
+.player-controls {
+    text-align: center;
+    font-size: 1.4rem;
+    letter-spacing: 12px;
+}
+
+/* Reverso */
+.back-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    text-align: center;
+}
+
+.back-content h3 {
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+#cardQR {
+    display: block;
+    width: 150px;
+    height: 150px;
+    background: white;
+    padding: 12px;
+    border-radius: calc(var(--card-radius) - 6px);
+}
+
+.logo-sub {
+    color: #555;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+/* Ajuste responsivo: En móviles los controles pasan arriba y las cards abajo */
+@media (max-width: 900px) {
+    .main-layout {
+        flex-direction: column; 
+        align-items: center;
+    }
+    .controls-panel { width: 100%; }
+}
