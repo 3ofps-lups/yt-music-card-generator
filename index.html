@@ -1,32 +1,42 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YT Music Card Generator</title>
+    <title>Lup's YT Music Card Generator</title>
+
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
 </head>
 
 <body>
-
     <div class="main-layout">
-
         <div class="controls-panel">
-            <h2>Configuración</h2>
-            <p>Personaliza tu tarjeta musical</p>
 
-            <input type="text" id="urlInput" placeholder="Pega el link de YouTube Music aquí">
+            <h2>Configuration</h2>
+            <p>Customize your music card</p>
 
-            <button class="btn-primary" onclick="generateCard()">Generar Tarjeta</button>
+            <input type="text" id="urlInput" placeholder="Paste the YouTube Music link here">
 
+            <button class="btn-primary" id="generateBtn">Generate Card</button>
             <div class="toggle-group">
-                <button class="btn-secondary" onclick="toggleLayout()">Cambiar Modo (H/V)</button>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="borderToggle" checked> Rounded corners
+                </label>
+            </div>
+
+            <div class="color-section">
+                <label class="section-label">Card Background:</label>
+                <div class="controls-row">
+                    <button class="btn-secondary" id="presetDarkBtn">Dark</button>
+                    <button class="btn-secondary" id="presetLightBtn">Light</button>
+                    <input type="color" id="cardColorPicker" value="#121212" class="color-picker">
+                </div>
 
                 <label class="checkbox-label">
-                    <input type="checkbox" id="borderToggle" checked onchange="toggleBorders()"> Bordes
+                    <input type="checkbox" id="dynamicBgToggle" checked> Apply dynamic background
                 </label>
             </div>
         </div>
@@ -34,46 +44,53 @@
         <div class="preview-container">
 
             <div class="card-wrapper">
-                <div class="card vertical" id="musicCardFront">
-                    <div class="card-inner">
-                        <img id="cardCover" src="https://via.placeholder.com/300" alt="Cover">
-                        <div class="card-info">
-                            <h2 id="cardTitle">Título de la Canción</h2>
-                            <h3 id="cardArtist">Artista</h3>
-                            <h4 id="cardAlbum"
-                                style="font-size: 0.9rem; color: #888; margin: -10px 0 15px 0; font-weight: normal;">
-                                Álbum</h4>
+                <div class="card" id="musicCardFront">
+                    <img class="card-blur-bg" id="cardBlurBgFront" src="cover.png" alt="">
 
-                            <div class="player-time-info"
-                                style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #b3b3b3; margin-bottom: 5px;">
-                                <span>0:00</span>
+                    <div class="card-inner">
+                        <img id="cardCover" src="cover.png" alt="Cover">
+                        <div class="card-info">
+                            <h2 id="cardTitle">Song Title</h2>
+                            <h3 id="cardArtist">Artist</h3>
+                            <h4 id="cardAlbum" class="card-album-text">Album</h4>
+
+                            <div class="player-time-info">
+                                <span id="cardCurrentTime">0:00</span>
                                 <span id="cardDuration">0:00</span>
                             </div>
                             <div class="player-progress">
-                                <div class="progress-bar"></div>
+                                <input type="range" id="progressSlider" min="0" max="100" value="35">
                             </div>
                             <div class="player-controls">⏮ ⏸ ⏭</div>
                         </div>
                     </div>
                 </div>
-                <button class="btn-card-download" id="downloadFrontBtn">⬇ Descargar Frontal</button>
+                <button class="btn-card-download" id="downloadFrontBtn">Download Frontside</button>
             </div>
 
             <div class="card-wrapper">
-                <div class="card vertical" id="musicCardBack">
+                <div class="card" id="musicCardBack">
+                    <img class="card-blur-bg" id="cardBlurBgBack" src="cover.png">
+
                     <div class="card-inner back-content">
-                        <h3>Escuchar en YT Music</h3>
-                        <img id="cardQR" src="https://via.placeholder.com/150" alt="Código QR">
+                        <div class="brand-header">
+                            <h3>Listen on</h3>
+                            <div class="logo-inline">
+                                <img id="brandLogo" src="yt-music.png">
+                                <span class="logo-text">Music</span>
+                            </div>
+                        </div>
+
+                        <div class="qr-container">
+                            <img id="cardQR" src="qr.png">
+                        </div>
                         <p class="logo-sub">Music Card Collectible</p>
                     </div>
                 </div>
-                <button class="btn-card-download" id="downloadBackBtn">⬇ Descargar Trasero</button>
+                <button class="btn-card-download" id="downloadBackBtn">Download Backside</button>
             </div>
-
         </div>
-
     </div>
-
 </body>
 
 </html>

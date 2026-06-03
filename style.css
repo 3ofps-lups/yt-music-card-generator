@@ -1,8 +1,5 @@
 :root {
-    --bg-card: #121212;
-    --text-color: #ffffff;
-    /* Color de fondo claro, moderno y suave para la vista (no blanco puro) */
-    --bg-page: #f4f5f8;
+    --bg-page: #e8e8e9;
 }
 
 body {
@@ -18,74 +15,38 @@ body {
     box-sizing: border-box;
 }
 
-/* Contenedor Maestro: Separa Preview (Izq) y Controles (Der) */
 .main-layout {
     display: flex;
     gap: 50px;
-    max-width: 1200px;
+    max-width: 1100px;
     width: 100%;
     align-items: flex-start;
     justify-content: center;
 }
 
-/* IZQUIERDA: Contenedor de las dos caras de la tarjeta */
-.preview-container {
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    flex: 2;
-    justify-content: center;
-}
-
-/* DERECHA: Panel Lateral de Controles */
 .controls-panel {
     background: #ffffff;
     padding: 30px;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     flex: 1;
-    min-width: 320px;
+    min-width: 300px;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.card-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
+.controls-panel h2 { margin: 0 0 5px 0; font-size: 1.5rem; color: #111; }
+.controls-panel p { margin: 0 0 10px 0; color: #666; font-size: 0.9rem; }
 
-.card-wrapper.horizontal-layout {
-    width: 480px; /* Se expande para emparejar el tamaño de la carta horizontal */
-}
-
-.controls-panel h2 {
-    margin: 0 0 5px 0;
-    font-size: 1.6rem;
-    color: #111;
-}
-
-.controls-panel p {
-    margin: 0 0 10px 0;
-    color: #666;
-    font-size: 0.9rem;
-}
-
-/* Inputs y Botones del Panel */
 .controls-panel input[type="text"] {
     padding: 12px 15px;
     border: 2px solid #e2e8f0;
     border-radius: 8px;
     font-size: 0.95rem;
     outline: none;
-    transition: border-color 0.2s;
 }
-
-.controls-panel input[type="text"]:focus {
-    border-color: #ff0000;
-}
+.controls-panel input[type="text"]:focus { border-color: #ff0000; }
 
 .controls-panel button {
     padding: 12px;
@@ -97,32 +58,17 @@ body {
     transition: all 0.2s ease;
 }
 
-.btn-primary {
-    background-color: #ff0000;
-    color: white;
-}
+.color-section { margin-top: 10px; display: flex; flex-direction: column; gap: 10px; }
+.section-label { font-size: 0.9rem; font-weight: bold; color: #444; }
+.controls-row { display: flex; gap: 8px; align-items: center; margin-bottom: 5px; }
 
-.btn-primary:hover {
-    background-color: #cc0000;
-}
+.btn-primary { background-color: #ff0000; color: white; }
+.btn-primary:hover { background-color: #cc0000; }
 
-.toggle-group {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px 0;
-    gap: 10px;
-}
+.btn-secondary { background-color: #e2e8f0; color: #333; padding: 6px 12px; font-size: 0.85rem; }
+.btn-secondary:hover { background-color: #cbd5e1; }
 
-.btn-secondary {
-    background-color: #e2e8f0;
-    color: #333;
-    flex: 1;
-}
-
-.btn-secondary:hover {
-    background-color: #cbd5e1;
-}
+.color-picker { border: none; width: 40px; height: 35px; cursor: pointer; padding: 0; background: none; }
 
 .checkbox-label {
     display: flex;
@@ -130,157 +76,103 @@ body {
     gap: 8px;
     font-size: 0.9rem;
     cursor: pointer;
-    user-select: none;
-    white-space: nowrap;
+    font-weight: normal;
+    margin-top: 5px;
 }
 
-/* Estilo para los botones individuales debajo de las tarjetas */
-.btn-card-download {
-    background-color: #111111;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    width: 100%; /* Se adapta al ancho de la tarjeta activa */
-}
+.preview-container { display: flex; gap: 30px; flex-wrap: wrap; flex: 2; justify-content: center; }
+.card-wrapper { display: flex; flex-direction: column; align-items: center; gap: 15px; }
 
-.btn-card-download:hover {
-    background-color: #333333;
-    transform: translateY(-2px);
-}
-
-.btn-card-download:active {
-    transform: translateY(0);
-}
-
-/* --- TARJETAS (ESTILO SE MANTIENE PERO CON REAJUSTES) --- */
 .card {
     --card-radius: 16px;
-    background: var(--bg-card);
-    color: var(--text-color);
+    --bg-card: #1a1a1d;
+    --text-card-color: #ffffff;
+    position: relative;
+    width: 300px;
+    height: 450px;
+    background: var(--bg-card) !important;
+    color: var(--text-card-color) !important;
     border-radius: var(--card-radius);
     padding: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    /* Sombras un poco más suaves en fondo claro */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-sizing: border-box;
 }
 
-/* Modo Vertical */
-.card.vertical {
-    width: 300px;
-    height: 450px;
-}
+.card h2, .card h3, .card h4, .card span { color: var(--text-card-color) !important; }
+.card-inner { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; }
 
-.card.vertical #cardCover {
+.card-blur-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transform: scale(1.3);
+    opacity: 0.55;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.card.solid-mode .card-blur-bg { opacity: 0 !important; visibility: hidden; }
+
+.card #cardCover {
     width: 100%;
     height: 240px;
     object-fit: cover;
     border-radius: calc(var(--card-radius) - 6px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
 }
 
-/* Modo Horizontal */
-.card.horizontal {
-    width: 480px;
-    height: 260px;
+.card-info h2 { font-size: 1.3rem; margin: 12px 0 5px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-info h3 { font-size: 0.95rem; opacity: 0.8; margin: 0 0 5px 0; }
+.card-info h4 { color: #888; }
+.card-album-text { font-size: 0.9rem; margin: -10px 0 15px 0; font-weight: normal; }
+
+.player-time-info { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 5px; }
+.player-progress { width: 100%; margin-bottom: 12px; display: flex; align-items: center; }
+
+#progressSlider {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 4px; border-radius: 3px;
+    background: linear-gradient(to right, #ff0000 0%, #ff0000 35%, rgba(255, 255, 255, 0.2) 35%, rgba(255, 255, 255, 0.2) 100%);
+    outline: none; cursor: pointer;
+}
+#progressSlider:hover { background: rgba(255, 255, 255, 0.3); }
+
+#progressSlider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #ff0000; cursor: pointer; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+#progressSlider::-moz-range-thumb {
+    width: 12px; height: 12px; border: none; border-radius: 50%;
+    background: #ff0000; cursor: pointer; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-.card.horizontal .card-inner {
-    display: flex;
-    gap: 20px;
-    height: 100%;
-}
+.player-controls { text-align: center; font-size: 1.3rem; letter-spacing: 12px; }
 
-.card.horizontal #cardCover {
-    width: 200px;
-    height: 100%;
-    object-fit: cover;
-    border-radius: calc(var(--card-radius) - 6px);
-}
+.back-content { justify-content: space-between; align-items: center; text-align: center; }
+.back-content h3 { font-size: 1rem; margin: 0; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; opacity: 0.8; }
 
-.card.horizontal .card-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
-}
+.brand-header { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; width: 100%; }
+.logo-inline { display: flex; align-items: center; justify-content: center; gap: 8px; }
+#brandLogo { height: 32px; width: auto; object-fit: contain; display: block; }
 
-/* Detalles de las cartas */
-.card-info h2 {
-    font-size: 1.3rem;
-    margin: 12px 0 5px 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+.logo-text { font-size: 1.6rem; font-weight: bold; font-family: 'Segoe UI', Arial, sans-serif; letter-spacing: -0.5px; }
+.logo-sub { opacity: 0.5; font-size: 0.8rem; margin-bottom: 15px; width: 100%; }
 
-.card-info h3 {
-    font-size: 0.95rem;
-    color: #b3b3b3;
-    margin: 0 0 5px 0;
-}
-
-.player-progress {
-    background: #333;
-    height: 5px;
-    border-radius: 3px;
-    margin-bottom: 15px;
-}
-
-.progress-bar {
-    background: #ff0000;
-    width: 35%;
-    height: 100%;
-    border-radius: 3px;
-}
-
-.player-controls {
-    text-align: center;
-    font-size: 1.4rem;
-    letter-spacing: 12px;
-}
-
-/* Reverso */
-.back-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    text-align: center;
-}
-
-.back-content h3 {
-    font-size: 1.1rem;
-    margin-top: 10px;
-}
-
+.qr-container { display: flex; justify-content: center; align-items: center; margin: auto 0; }
 #cardQR {
-    display: block;
-    width: 150px;
-    height: 150px;
-    background: white;
-    padding: 12px;
-    border-radius: calc(var(--card-radius) - 6px);
+    background: white; padding: 12px; width: 250px; height: 250px; display: block;
+    border-radius: calc(var(--card-radius) - 4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); box-sizing: border-box;
 }
 
-.logo-sub {
-    color: #555;
-    font-size: 0.8rem;
-    margin-bottom: 10px;
+.btn-card-download {
+    background-color: #111111; color: white; border: none; padding: 10px 20px; border-radius: 20px;
+    font-size: 0.85rem; font-weight: bold; cursor: pointer; transition: all 0.2s ease; width: 100%;
 }
+.btn-card-download:hover { background-color: #333333; transform: translateY(-2px); }
 
-/* Ajuste responsivo: En móviles los controles pasan arriba y las cards abajo */
 @media (max-width: 900px) {
-    .main-layout {
-        flex-direction: column; 
-        align-items: center;
-    }
+    .main-layout { flex-direction: column; align-items: center; }
     .controls-panel { width: 100%; }
 }
